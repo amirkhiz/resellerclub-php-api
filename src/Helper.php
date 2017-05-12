@@ -54,6 +54,9 @@ trait Helper
 
     protected function post($method, $args = [], $prefix = '')
     {
+        //Merge default args with sent one
+        $args = array_merge($args, $this->authentication);
+
         return $this->parse(
             $this->guzzle->request(
                 'POST',
