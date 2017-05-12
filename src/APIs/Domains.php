@@ -242,7 +242,7 @@ class Domains
         return $this->get(
             'search',
             [
-                'no-of-results'     => $records,
+                'no-of-records'     => $records,
                 'page-no'           => $page,
                 'order-by'          => $order,
                 'order-id'          => $orderIds,
