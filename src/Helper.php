@@ -54,6 +54,7 @@ trait Helper
 
     protected function post($method, $args = [], $prefix = '')
     {
+        //Todo use middleware to merge default values in guzzle
         //Merge default args with sent one
         $args = array_merge($args, $this->authentication);
 
