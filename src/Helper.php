@@ -19,11 +19,6 @@ trait Helper
      */
     private $authentication = [];
 
-    /**
-     * @var string
-     */
-    protected $api;
-
     public function __construct(Guzzle $guzzle, array $authentication)
     {
         $this->authentication = $authentication;
