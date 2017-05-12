@@ -1,0 +1,22 @@
+{
+    "name": "afbora/resellerclub-php-sdk",
+    "description": "PHP SDK for ResellerClub API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmet Bora",
+            "email": "ahmet.bora@pixelturk.net"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "afbora\\ResellerClub\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
