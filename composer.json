@@ -1,11 +1,11 @@
 {
-    "name": "afbora/resellerclub-php-sdk",
+    "name": "habil/resellerclub-php-api",
     "description": "PHP SDK for ResellerClub API",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ahmet Bora",
-            "email": "ahmet.bora@pixelturk.net"
+            "name": "Siavash Habil",
+            "email": "amirkhiz@gmail.com"
         }
     ],
     "require": {
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "afbora\\ResellerClub\\": "src/"
+            "habil\\ResellerClub\\": "src/"
         }
     },
     "config": {

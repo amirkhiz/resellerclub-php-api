@@ -1,6 +1,6 @@
 <?php
 
-namespace afbora\ResellerClub;
+namespace habil\ResellerClub;
 
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\RequestOptions;

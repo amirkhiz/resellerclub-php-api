@@ -4,18 +4,18 @@
 "repositories": [
       {
           "type": "vcs",
-          "url":  "https://github.com/afbora/resellerclub-php-sdk.git"
+          "url":  "https://github.com/amirkhiz/resellerclub-php-api.git"
       }
   ],
   "require": {
-    "afbora/resellerclub-php-sdk": "dev-master"
+    "amirkhiz/resellerclub-php-api": "dev-master"
   }
   ```
 
 # Usage
 Note: All functions return raw response from ResellerClubs's API. (This will change in the future)
 ```
-$resellerClub = new \afbora\ResellerClub\ResellerClub('<userId>', '<apiKey>', true); // Last argument is for testmode.
+$resellerClub = new \habil\ResellerClub\ResellerClub('<userId>', '<apiKey>', true); // Last argument is for testmode.
 
 // Get Available TLDs
 $resellerClub->domains()->getTLDs();

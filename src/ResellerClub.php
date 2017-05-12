@@ -1,10 +1,10 @@
 <?php
 
-namespace afbora\ResellerClub;
+namespace habil\ResellerClub;
 
-use afbora\ResellerClub\APIs\Contacts;
-use afbora\ResellerClub\APIs\Customers;
-use afbora\ResellerClub\APIs\Domains;
+use habil\ResellerClub\APIs\Contacts;
+use habil\ResellerClub\APIs\Customers;
+use habil\ResellerClub\APIs\Domains;
 use GuzzleHttp\Client as Guzzle;
 
 class ResellerClub
@@ -50,7 +50,7 @@ class ResellerClub
     private function _getAPI($api)
     {
         if (empty($this->apiList[$api])) {
-            $class               = 'afbora\\ResellerClub\\APIs\\' . $api;
+            $class               = 'habil\\ResellerClub\\APIs\\' . $api;
             $this->apiList[$api] = new $class($this->guzzle, $this->authentication);
         }
 
