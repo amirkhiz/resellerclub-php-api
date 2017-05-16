@@ -6,6 +6,7 @@ use habil\ResellerClub\APIs\Contacts;
 use habil\ResellerClub\APIs\Customers;
 use habil\ResellerClub\APIs\Domains;
 use GuzzleHttp\Client as Guzzle;
+use habil\ResellerClub\APIs\Products;
 
 class ResellerClub
 {
@@ -79,5 +80,13 @@ class ResellerClub
     public function customers()
     {
         return $this->_getAPI('Customers');
+    }
+
+    /**
+     * @return Products
+     */
+    public function products()
+    {
+        return $this->_getAPI('Products');
     }
 }
