@@ -69,6 +69,22 @@ trait Helper
         );
     }
 
+    public function postArgString($method, $args = '', $prefix = '')
+    {
+        $authenticationString = http_build_query($this->authentication);
+
+        return $this->parse(
+            $this->guzzle->request(
+                'POST',
+                $this->api . '/' . $prefix . $method . '.json?' . preg_replace(
+                    '/%5B[0-9]+%5D/simU',
+                    '',
+                    $args . '&' . $authenticationString
+                )
+            )
+        );
+    }
+
     /**
      * @param ResponseInterface $response
      * @param string $type

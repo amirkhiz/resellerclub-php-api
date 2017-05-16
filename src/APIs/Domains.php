@@ -117,9 +117,7 @@ class Domains
         $additional = []
     )
     {
-        return $this->post(
-            'register',
-            [
+        $params = [
                 'domain-name'        => $domain,
                 'years'              => $years,
                 'ns'                 => $ns,
@@ -131,8 +129,11 @@ class Domains
                 'invoice-option'     => $invoice, // Options: NoInvoice, PayInvoice, KeepInvoice
                 'purchase-privacy'   => $purchasePrivacy,
                 'protect-privacy'    => $protectPrivacy,
-            ] + $this->processAttributes($additional)
-        );
+            ] + $this->processAttributes($additional);
+
+        $params = http_build_query($params);
+
+        return $this->postArgString('register', $params);
     }
 
     public function transfer(
