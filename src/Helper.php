@@ -3,6 +3,9 @@
 namespace habil\ResellerClub;
 
 use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
@@ -27,29 +30,49 @@ trait Helper
 
     protected function get($method, $args = [], $prefix = '')
     {
-        return $this->parse(
-            $this->guzzle->get(
-                $this->api . '/' . $prefix . $method . '.json?' . preg_replace(
-                    '/%5B[0-9]+%5D/simU',
-                    '',
-                    http_build_query(array_merge($args, $this->authentication))
+        try {
+            return $this->parse(
+                $this->guzzle->get(
+                    $this->api . '/' . $prefix . $method . '.json?' . preg_replace(
+                        '/%5B[0-9]+%5D/simU',
+                        '',
+                        http_build_query(array_merge($args, $this->authentication))
+                    )
                 )
-            )
-        );
+            );
+        } catch (ClientException $e) {
+            return $this->parse($e->getResponse());
+        } catch (ServerException $e) {
+            return $this->parse($e->getResponse());
+        } catch (BadResponseException $e) {
+            return $this->parse($e->getResponse());
+        } catch (\Exception $error) {
+            return $error;
+        }
     }
 
     protected function getXML($method, $args = [], $prefix = '')
     {
-        return $this->parse(
-            $this->guzzle->get(
-                $this->api . '/' . $prefix . $method . '.xml?' . preg_replace(
-                    '/%5B[0-9]+%5D/simU',
-                    '',
-                    http_build_query(array_merge($args, $this->authentication))
-                )
-            ),
-            'xml'
-        );
+        try {
+            return $this->parse(
+                $this->guzzle->get(
+                    $this->api . '/' . $prefix . $method . '.xml?' . preg_replace(
+                        '/%5B[0-9]+%5D/simU',
+                        '',
+                        http_build_query(array_merge($args, $this->authentication))
+                    )
+                ),
+                'xml'
+            );
+        } catch (ClientException $e) {
+            return $this->parse($e->getResponse(), 'xml');
+        } catch (ServerException $e) {
+            return $this->parse($e->getResponse(), 'xml');
+        } catch (BadResponseException $e) {
+            return $this->parse($e->getResponse(), 'xml');
+        } catch (\Exception $error) {
+            return $error;
+        }
     }
 
     protected function post($method, $args = [], $prefix = '')
@@ -58,31 +81,51 @@ trait Helper
         //Merge default args with sent one
         $args = array_merge($args, $this->authentication);
 
-        return $this->parse(
-            $this->guzzle->request(
-                'POST',
-                $this->api . '/' . $prefix . $method . '.json',
-                [
-                    RequestOptions::FORM_PARAMS => $args,
-                ]
-            )
-        );
+        try {
+            return $this->parse(
+                $this->guzzle->request(
+                    'POST',
+                    $this->api . '/' . $prefix . $method . '.json',
+                    [
+                        RequestOptions::FORM_PARAMS => $args,
+                    ]
+                )
+            );
+        } catch (ClientException $e) {
+            return $this->parse($e->getResponse());
+        } catch (ServerException $e) {
+            return $this->parse($e->getResponse());
+        } catch (BadResponseException $e) {
+            return $this->parse($e->getResponse());
+        } catch (\Exception $error) {
+            return $error;
+        }
     }
 
     public function postArgString($method, $args = '', $prefix = '')
     {
         $authenticationString = http_build_query($this->authentication);
 
-        return $this->parse(
-            $this->guzzle->request(
-                'POST',
-                $this->api . '/' . $prefix . $method . '.json?' . preg_replace(
-                    '/%5B[0-9]+%5D/simU',
-                    '',
-                    $args . '&' . $authenticationString
+        try {
+            return $this->parse(
+                $this->guzzle->request(
+                    'POST',
+                    $this->api . '/' . $prefix . $method . '.json?' . preg_replace(
+                        '/%5B[0-9]+%5D/simU',
+                        '',
+                        $args . '&' . $authenticationString
+                    )
                 )
-            )
-        );
+            );
+        } catch (ClientException $e) {
+            return $this->parse($e->getResponse());
+        } catch (ServerException $e) {
+            return $this->parse($e->getResponse());
+        } catch (BadResponseException $e) {
+            return $this->parse($e->getResponse());
+        } catch (\Exception $error) {
+            return $error;
+        }
     }
 
     /**
