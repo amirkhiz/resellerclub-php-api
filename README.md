@@ -9,7 +9,7 @@ Many thanks to [Ahmet Bora](https://github.com/afbora "Ahmet Bora"). This reposi
       }
   ],
   "require": {
-    "amirkhiz/resellerclub-php-api": "dev-master"
+    "habil/resellerclub-php-api": "dev-master"
   }
   ```
 
