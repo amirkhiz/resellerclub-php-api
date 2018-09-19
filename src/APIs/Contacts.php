@@ -67,7 +67,8 @@ class Contacts
         $address3 = '',
         $state = '',
         $faxCC = '',
-        $fax = ''
+        $fax = '',
+        $country=''
     )
     {
         return $this->post(
@@ -87,6 +88,7 @@ class Contacts
                 'state'          => $state,
                 'fax-cc'         => $faxCC,
                 'fax'            => $fax,
+                'country'        => $country,
             ]
         );
     }
