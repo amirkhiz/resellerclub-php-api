@@ -30,7 +30,7 @@ class ResellerClub
      */
     private $authentication = [];
 
-    public function __construct($userId, $apiKey, $testMode = FALSE)
+    public function __construct($userId, $apiKey, $testMode = FALSE, $timeout = 0)
     {
         $this->authentication = [
             'auth-userid' => $userId,
@@ -44,6 +44,8 @@ class ResellerClub
                     'query' => $this->authentication,
                 ],
                 'verify'   => FALSE,
+                'connect_timeout' => (float)$timeout,
+                'timeout' => (float)$timeout,
             ]
         );
     }
