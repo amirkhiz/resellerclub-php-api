@@ -26,3 +26,7 @@ $resellerClub->domains()->available(['google', 'example'], ['com', 'net']); // T
 ```
 
 Currently all of the domains, contacts and customers API are available.
+
+# Todos
+- Make ResellerClub::class to get `ClientInterface` from constructor instead of create it in constructor
+- Create .env file for API endpoints
