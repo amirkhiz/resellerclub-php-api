@@ -16,7 +16,7 @@ Many thanks to [Ahmet Bora](https://github.com/afbora "Ahmet Bora"). This reposi
 # Usage
 Note: All functions return raw response from ResellerClubs's API. (This will change in the future)
 ```
-$resellerClub = new \habil\ResellerClub\ResellerClub('<userId>', '<apiKey>', true); // Last argument is for testMode.
+$resellerClub = new \habil\ResellerClub\ResellerClub('<userId>', '<apiKey>', true, 60.0); // Last arguments are for testMode and timeout of the request in seconds.
 
 // Get Available TLDs
 $resellerClub->domains()->getTLDs();
