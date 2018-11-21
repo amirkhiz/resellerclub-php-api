@@ -16,7 +16,12 @@ Many thanks to [Ahmet Bora](https://github.com/afbora "Ahmet Bora"). This reposi
 # Usage
 Note: All functions return raw response from ResellerClubs's API. (This will change in the future)
 ```
-$resellerClub = new \habil\ResellerClub\ResellerClub('<userId>', '<apiKey>', true, 60.0); // Last arguments are for testMode and timeout of the request in seconds.
+// string $userId
+// string $apiKey
+// boolean $testMode Default is false.
+// float $timeout Timeout of the request in seconds. Default is 0 (wait indefinitely)
+// string $bindIp Source IP address for Guzzle connections (CURLOPT_INTERFACE and socket context option bindto). Default is '0' which means let the system choose the IP.
+$resellerClub = new \habil\ResellerClub\ResellerClub('<userId>', '<apiKey>', true, 60.0, '127.0.0.1');
 
 // Get Available TLDs
 $resellerClub->domains()->getTLDs();
