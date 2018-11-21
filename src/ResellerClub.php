@@ -30,7 +30,7 @@ class ResellerClub
      */
     private $authentication = [];
 
-    public function __construct($userId, $apiKey, $testMode = FALSE, $timeout = 0)
+    public function __construct($userId, $apiKey, $testMode = FALSE, $timeout = 0, $bindIp = '0')
     {
         $this->authentication = [
             'auth-userid' => $userId,
@@ -46,6 +46,14 @@ class ResellerClub
                 'verify'   => FALSE,
                 'connect_timeout' => (float)$timeout,
                 'timeout' => (float)$timeout,
+                'curl' => [
+                    CURLOPT_INTERFACE => null !== $bindIp ? $bindIp : '0',
+                ],
+                'stream_context' => [
+                    'socket' => [
+                        'bindto' => null !== $bindIp ? $bindIp : '0',
+                    ]
+                ],
             ]
         );
     }
