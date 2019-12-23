@@ -568,4 +568,32 @@ class Domains
     {
         return $this->get('tld-info');
     }
+
+    public function getPremium($slds)
+    {
+        return $this->get('premium-check', [
+            'domain-name'   => $slds,
+        ]);
+    }
+
+    public function lock($orderId, $reason)
+    {
+        return $this->get('add',
+            [
+                'order-id'  => $orderId,
+                'reason'    => $reason
+            ],
+            'reseller-lock/'
+        );
+    }
+
+    public function unlock($orderId)
+    {
+        return $this->get('remove',
+            [
+                'order-id'  => $orderId
+            ],
+            'reseller-lock/'
+        );
+    }
 }
