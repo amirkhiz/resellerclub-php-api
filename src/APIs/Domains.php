@@ -193,16 +193,13 @@ class Domains
 
     public function renew($orderId, $years, $exp, $purchasePrivacy, $invoice)
     {
-        return $this->post(
-            'renew',
-            [
-                'order-id'         => $orderId,
-                'years'            => $years,
-                'exp-date'         => strtotime($exp),
-                'purchase-privacy' => $purchasePrivacy,
-                'invoice-option'   => $invoice // Options: NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
-            ]
-        );
+        return $this->postArgString('renew', http_build_query([
+            'order-id'         => $orderId,
+            'years'            => $years,
+            'exp-date'         => strtotime($exp),
+            'purchase-privacy' => $purchasePrivacy,
+            'invoice-option'   => $invoice // Options: NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
+        ]));
     }
 
     public function search(
