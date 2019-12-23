@@ -292,7 +292,10 @@ class Domains
 
     public function modifyNameServers($orderId, $ns)
     {
-        return $this->post('modify-ns', ['order-id' => $orderId, 'ns' => $ns]);
+        return $this->postArgString('modify-ns', http_build_query([
+            'order-id' => $orderId,
+            'ns' => $ns,
+        ]));
     }
 
     public function addChildNameServer($orderId, $cns, $ip)
