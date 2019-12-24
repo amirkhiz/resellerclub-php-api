@@ -193,16 +193,13 @@ class Domains
 
     public function renew($orderId, $years, $exp, $purchasePrivacy, $invoice)
     {
-        return $this->post(
-            'renew',
-            [
-                'order-id'         => $orderId,
-                'years'            => $years,
-                'exp-date'         => strtotime($exp),
-                'purchase-privacy' => $purchasePrivacy,
-                'invoice-option'   => $invoice // Options: NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
-            ]
-        );
+        return $this->postArgString('renew', http_build_query([
+            'order-id'         => $orderId,
+            'years'            => $years,
+            'exp-date'         => strtotime($exp),
+            'purchase-privacy' => $purchasePrivacy,
+            'invoice-option'   => $invoice // Options: NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
+        ]));
     }
 
     public function search(
@@ -292,7 +289,10 @@ class Domains
 
     public function modifyNameServers($orderId, $ns)
     {
-        return $this->post('modify-ns', ['order-id' => $orderId, 'ns' => $ns]);
+        return $this->postArgString('modify-ns', http_build_query([
+            'order-id' => $orderId,
+            'ns' => $ns,
+        ]));
     }
 
     public function addChildNameServer($orderId, $cns, $ip)
@@ -567,5 +567,33 @@ class Domains
     public function getTLDs()
     {
         return $this->get('tld-info');
+    }
+
+    public function getPremium($slds)
+    {
+        return $this->get('premium-check', [
+            'domain-name'   => $slds,
+        ]);
+    }
+
+    public function lock($orderId, $reason)
+    {
+        return $this->get('add',
+            [
+                'order-id'  => $orderId,
+                'reason'    => $reason
+            ],
+            'reseller-lock/'
+        );
+    }
+
+    public function unlock($orderId)
+    {
+        return $this->get('remove',
+            [
+                'order-id'  => $orderId
+            ],
+            'reseller-lock/'
+        );
     }
 }

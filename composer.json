@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "ext-curl": "*",
         "guzzlehttp/guzzle": "~6"
     },
     "autoload": {
