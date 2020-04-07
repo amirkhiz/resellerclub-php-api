@@ -152,7 +152,7 @@ class Domains
     )
     {
         return $this->post(
-            'register',
+            'transfer',
             [
                 'domain-name'        => $domain,
                 'auth-code'          => $code,
