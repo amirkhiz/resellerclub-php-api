@@ -2,6 +2,7 @@
 
 namespace habil\ResellerClub;
 
+use habil\ResellerClub\APIs\Actions;
 use habil\ResellerClub\APIs\Contacts;
 use habil\ResellerClub\APIs\Customers;
 use habil\ResellerClub\APIs\Domains;
@@ -107,5 +108,13 @@ class ResellerClub
     public function orders()
     {
         return $this->_getAPI('Orders');
+    }
+
+    /**
+     * @return Actions
+     */
+    public function actions()
+    {
+        return $this->_getAPI('Actions');
     }
 }
