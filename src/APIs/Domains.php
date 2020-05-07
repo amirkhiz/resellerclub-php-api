@@ -361,7 +361,7 @@ class Domains
     public function purchasePrivacy($orderId, $invoiceOption)
     {
         return $this->post(
-            'modify-contact',
+            'purchase-privacy',
             [
                 'order-id'       => $orderId,
                 'invoice-option' => $invoiceOption // NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
