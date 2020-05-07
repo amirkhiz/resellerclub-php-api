@@ -13,8 +13,11 @@ class Domains
      */
     protected $api = 'domains';
 
-    public function available($slds, $tlds = ['com', 'org', 'net'], $suggestAlternative = FALSE)
-    {
+    public function available(
+        $slds,
+        $tlds = ['com', 'org', 'net'],
+        $suggestAlternative = false
+    ) {
         return $this->get(
             'available',
             [
@@ -37,8 +40,13 @@ class Domains
         );
     }
 
-    public function premiumAvailable($keyword, $tlds, $results = 10, $priceHigh = 999999999, $priceLow = 0)
-    {
+    public function premiumAvailable(
+        $keyword,
+        $tlds,
+        $results = 10,
+        $priceHigh = 999999999,
+        $priceLow = 0
+    ) {
         return $this->get(
             'available',
             [
@@ -66,8 +74,7 @@ class Domains
         $address3 = '',
         $phoneCC = '',
         $phone = ''
-    )
-    {
+    ) {
         return $this->post(
             'available',
             [
@@ -89,7 +96,7 @@ class Domains
         );
     }
 
-    public function suggestNames($keyword, $tld = '', $exactMatch = FALSE)
+    public function suggestNames($keyword, $tld = '', $exactMatch = false)
     {
         return $this->get(
             'suggest-names',
@@ -112,11 +119,10 @@ class Domains
         $tech,
         $billing,
         $invoice,
-        $purchasePrivacy = FALSE,
-        $protectPrivacy = FALSE,
+        $purchasePrivacy = false,
+        $protectPrivacy = false,
         $additional = []
-    )
-    {
+    ) {
         $params = [
                 'domain-name'        => $domain,
                 'years'              => $years,
@@ -126,7 +132,8 @@ class Domains
                 'admin-contact-id'   => $admin,
                 'tech-contact-id'    => $tech,
                 'billing-contact-id' => $billing,
-                'invoice-option'     => $invoice, // Options: NoInvoice, PayInvoice, KeepInvoice
+                'invoice-option'     => $invoice,
+                // Options: NoInvoice, PayInvoice, KeepInvoice
                 'purchase-privacy'   => $purchasePrivacy,
                 'protect-privacy'    => $protectPrivacy,
             ] + $this->processAttributes($additional);
@@ -146,11 +153,10 @@ class Domains
         $invoice,
         $code,
         $ns = [],
-        $purchasePrivacy = FALSE,
-        $protectPrivacy = FALSE,
+        $purchasePrivacy = false,
+        $protectPrivacy = false,
         $additional = []
-    )
-    {
+    ) {
         return $this->post(
             'transfer',
             [
@@ -162,7 +168,8 @@ class Domains
                 'admin-contact-id'   => $admin,
                 'tech-contact-id'    => $tech,
                 'billing-contact-id' => $billing,
-                'invoice-option'     => $invoice, // Options: NoInvoice, PayInvoice, KeepInvoice
+                'invoice-option'     => $invoice,
+                // Options: NoInvoice, PayInvoice, KeepInvoice
                 'purchase-privacy'   => $purchasePrivacy,
                 'protect-privacy'    => $protectPrivacy,
             ] + $this->processAttributes($additional)
@@ -193,23 +200,30 @@ class Domains
 
     public function renew($orderId, $years, $exp, $purchasePrivacy, $invoice)
     {
-        return $this->postArgString('renew', http_build_query([
-            'order-id'         => $orderId,
-            'years'            => $years,
-            'exp-date'         => strtotime($exp),
-            'purchase-privacy' => $purchasePrivacy,
-            'invoice-option'   => $invoice // Options: NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
-        ]));
+        return $this->postArgString(
+            'renew',
+            http_build_query(
+                [
+                    'order-id'         => $orderId,
+                    'years'            => $years,
+                    'exp-date'         => strtotime($exp),
+                    'purchase-privacy' => $purchasePrivacy,
+                    'invoice-option'   => $invoice
+                    // Options: NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
+                ]
+            )
+        );
     }
 
     public function search(
         $records = 10,
-        $page = 0, // this might need to be 1 but API docs are lacking that information
+        $page = 0,
+        // this might need to be 1 but API docs are lacking that information
         $order = [],
         $orderIds = [],
         $resellers = [],
         $customers = [],
-        $showChild = FALSE,
+        $showChild = false,
         $productKeys = [],
         $statuses = [],
         $domain = '',
@@ -218,22 +232,21 @@ class Domains
         $createdEnd = '',
         $expireStart = '',
         $expireEnd = ''
-    )
-    {
+    ) {
         $dates = [];
-        if (!empty($createdStart)) {
+        if ( ! empty($createdStart)) {
             $dates['creation-date-start'] = strtotime($createdStart);
         }
 
-        if (!empty($createdEnd)) {
+        if ( ! empty($createdEnd)) {
             $dates['creation-date-end'] = strtotime($createdEnd);
         }
 
-        if (!empty($expireStart)) {
+        if ( ! empty($expireStart)) {
             $dates['expiry-date-start'] = strtotime($expireStart);
         }
 
-        if (!empty($expireEnd)) {
+        if ( ! empty($expireEnd)) {
             $dates['expiry-date-end'] = strtotime($expireEnd);
         }
 
@@ -248,16 +261,21 @@ class Domains
                 'customer-id'       => $customers,
                 'show-child-orders' => $showChild,
                 'product-key'       => $productKeys,
-                'status'            => $statuses, // InActive, Active, Suspended, Pending Delete Restorable, Deleted, Archived, Pending Verification, Failed Verification
+                'status'            => $statuses,
+                // InActive, Active, Suspended, Pending Delete Restorable, Deleted, Archived, Pending Verification, Failed Verification
                 'domain-name'       => $domain,
-                'privacy-enabled'   => $privacy // true, false, na
+                'privacy-enabled'   => $privacy
+                // true, false, na
             ] + $dates
         );
     }
 
     public function getDefaultNameservers($customerId)
     {
-        return $this->get('customer-default-ns', ['customer-id' => $customerId]);
+        return $this->get(
+            'customer-default-ns',
+            ['customer-id' => $customerId]
+        );
     }
 
     public function getOrderId($domain)
@@ -271,7 +289,8 @@ class Domains
             'details',
             [
                 'order-id' => $orderId,
-                'options'  => $options // All, OrderDetails, ContactIds, RegistrantContactDetails, AdminContactDetails, TechContactDetails, BillingContactDetails, NsDetails, DoaminStatus, DNSSECDetails, StatusDetails
+                'options'  => $options
+                // All, OrderDetails, ContactIds, RegistrantContactDetails, AdminContactDetails, TechContactDetails, BillingContactDetails, NsDetails, DoaminStatus, DNSSECDetails, StatusDetails
             ]
         );
     }
@@ -282,17 +301,23 @@ class Domains
             'details-by-name',
             [
                 'domain-name' => $domain,
-                'options'     => $options // All, OrderDetails, ContactIds, RegistrantContactDetails, AdminContactDetails, TechContactDetails, BillingContactDetails, NsDetails, DoaminStatus, DNSSECDetails, StatusDetails
+                'options'     => $options
+                // All, OrderDetails, ContactIds, RegistrantContactDetails, AdminContactDetails, TechContactDetails, BillingContactDetails, NsDetails, DoaminStatus, DNSSECDetails, StatusDetails
             ]
         );
     }
 
     public function modifyNameServers($orderId, $ns)
     {
-        return $this->postArgString('modify-ns', http_build_query([
-            'order-id' => $orderId,
-            'ns' => $ns,
-        ]));
+        return $this->postArgString(
+            'modify-ns',
+            http_build_query(
+                [
+                    'order-id' => $orderId,
+                    'ns'       => $ns,
+                ]
+            )
+        );
     }
 
     public function addChildNameServer($orderId, $cns, $ip)
@@ -344,8 +369,13 @@ class Domains
         );
     }
 
-    public function modifyContact($orderId, $regContactId, $adminContactId, $techContactId, $billingContactId)
-    {
+    public function modifyContact(
+        $orderId,
+        $regContactId,
+        $adminContactId,
+        $techContactId,
+        $billingContactId
+    ) {
         return $this->post(
             'modify-contact',
             [
@@ -364,7 +394,8 @@ class Domains
             'purchase-privacy',
             [
                 'order-id'       => $orderId,
-                'invoice-option' => $invoiceOption // NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
+                'invoice-option' => $invoiceOption
+                // NoInvoice, PayInvoice, KeepInvoice, OnlyAdd
             ]
         );
     }
@@ -399,7 +430,10 @@ class Domains
 
     public function disableTheftProtection($orderId)
     {
-        return $this->post('disable-theft-protection', ['order-id' => $orderId]);
+        return $this->post(
+            'disable-theft-protection',
+            ['order-id' => $orderId]
+        );
     }
 
     public function getLocks($orderId)
@@ -432,7 +466,11 @@ class Domains
 
     public function releaseUk($orderId, $tag)
     {
-        return $this->post('release', ['order-id' => $orderId, 'new-tag' => $tag], 'uk/');
+        return $this->post(
+            'release',
+            ['order-id' => $orderId, 'new-tag' => $tag],
+            'uk/'
+        );
     }
 
     public function cancelTransfer($orderId)
@@ -447,7 +485,10 @@ class Domains
 
     public function restore($orderId, $invoice)
     {
-        return $this->post('restore', ['order-id' => $orderId, 'invoice-option' => $invoice]);
+        return $this->post(
+            'restore',
+            ['order-id' => $orderId, 'invoice-option' => $invoice]
+        );
     }
 
     public function recheckNsDe($orderId)
@@ -457,12 +498,20 @@ class Domains
 
     public function setXXXAssociation($orderId, $id = '')
     {
-        return $this->post('association-details', ['order-id' => $orderId, 'association-id' => $id], 'dotxxx/');
+        return $this->post(
+            'association-details',
+            ['order-id' => $orderId, 'association-id' => $id],
+            'dotxxx/'
+        );
     }
 
     public function getXXXAssociation($orderId)
     {
-        return $this->post('association-details', ['order-id' => $orderId], 'dotxxx/');
+        return $this->post(
+            'association-details',
+            ['order-id' => $orderId],
+            'dotxxx/'
+        );
     }
 
     public function addDNSSEC($orderId, $attributes)
@@ -481,17 +530,29 @@ class Domains
 
     public function resendVerificationEmail($orderId)
     {
-        return $this->post('resend-verification', ['order-id' => $orderId], 'raa/');
+        return $this->post(
+            'resend-verification',
+            ['order-id' => $orderId],
+            'raa/'
+        );
     }
 
     public function addWishList($customerId, $domains)
     {
-        return $this->post('add', ['customerid' => $customerId, 'domain' => $domains], 'preordering/');
+        return $this->post(
+            'add',
+            ['customerid' => $customerId, 'domain' => $domains],
+            'preordering/'
+        );
     }
 
     public function deleteWishList($customerId, $domain)
     {
-        return $this->post('delete', ['customerid' => $customerId, 'domain' => $domain], 'preordering/');
+        return $this->post(
+            'delete',
+            ['customerid' => $customerId, 'domain' => $domain],
+            'preordering/'
+        );
     }
 
     public function fetchWishList(
@@ -501,10 +562,9 @@ class Domains
         $resellerId = -1,
         $slds = [],
         $tlds = [],
-        $createdStart = FALSE,
-        $createdEnd = FALSE
-    )
-    {
+        $createdStart = false,
+        $createdEnd = false
+    ) {
         $data = [
             'no-of-records' => $records,
             'page-no'       => $page,
@@ -518,19 +578,19 @@ class Domains
             $data['resellerId'] = $resellerId;
         }
 
-        if (!empty($slds)) {
+        if ( ! empty($slds)) {
             $data['domain'] = $slds;
         }
 
-        if (!empty($tlds)) {
+        if ( ! empty($tlds)) {
             $data['tld'] = $tlds;
         }
 
-        if ($createdStart !== FALSE) {
+        if ($createdStart !== false) {
             $data['creation-date-start'] = strtotime($createdStart);
         }
 
-        if ($createdEnd !== FALSE) {
+        if ($createdEnd !== false) {
             $data['creation-date-end'] = strtotime($createdEnd);
         }
 
@@ -539,7 +599,11 @@ class Domains
 
     public function fetchTLDs($category)
     {
-        return $this->get('fetchtldlist', ['category' => $category], 'preordering/');
+        return $this->get(
+            'fetchtldlist',
+            ['category' => $category],
+            'preordering/'
+        );
     }
 
     public function checkSunrise($sld, $tlds, $smd)
@@ -571,17 +635,21 @@ class Domains
 
     public function getPremium($slds)
     {
-        return $this->get('premium-check', [
-            'domain-name'   => $slds,
-        ]);
+        return $this->get(
+            'premium-check',
+            [
+                'domain-name' => $slds,
+            ]
+        );
     }
 
     public function lock($orderId, $reason)
     {
-        return $this->get('add',
+        return $this->get(
+            'add',
             [
-                'order-id'  => $orderId,
-                'reason'    => $reason
+                'order-id' => $orderId,
+                'reason'   => $reason,
             ],
             'reseller-lock/'
         );
@@ -589,9 +657,10 @@ class Domains
 
     public function unlock($orderId)
     {
-        return $this->get('remove',
+        return $this->get(
+            'remove',
             [
-                'order-id'  => $orderId
+                'order-id' => $orderId,
             ],
             'reseller-lock/'
         );

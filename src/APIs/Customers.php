@@ -3,7 +3,13 @@
 namespace habil\ResellerClub\APIs;
 
 use habil\ResellerClub\Helper;
+use SimpleXMLElement;
 
+/**
+ * Class Customers
+ *
+ * @package habil\ResellerClub\APIs
+ */
 class Customers
 {
     use Helper;
@@ -15,19 +21,26 @@ class Customers
 
     /**
      * Changes the password for the specified Customer.
+     *
      * @param $customerId
      * @param $newPassword
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function changePassword($customerId, $newPassword)
     {
-        return $this->post('change-password', ['customer-id' => $customerId, 'new-passwd' => $newPassword]);
+        return $this->post(
+            'change-password',
+            ['customer-id' => $customerId, 'new-passwd' => $newPassword]
+        );
     }
 
     /**
      * Gets the Customer details for the specified Customer Username.
+     *
      * @param $username
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function details($username)
     {
@@ -36,8 +49,10 @@ class Customers
 
     /**
      * Gets the Customer details for the specified Customer Id.
+     *
      * @param $customerId
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function detailsById($customerId)
     {
@@ -46,6 +61,7 @@ class Customers
 
     /**
      * Modifies the Account details of the specified Customer.
+     *
      * @param $customerId
      * @param $username
      * @param $name
@@ -58,7 +74,8 @@ class Customers
      * @param $phoneCC
      * @param $phone
      * @param $lang
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function modify(
         $customerId,
@@ -73,8 +90,7 @@ class Customers
         $phoneCC,
         $phone,
         $lang
-    )
-    {
+    ) {
         return $this->post(
             'modify',
             [
@@ -96,6 +112,7 @@ class Customers
 
     /**
      * Creates a Customer Account using the details provided.
+     *
      * @param $username
      * @param $passwd
      * @param $name
@@ -108,7 +125,8 @@ class Customers
      * @param $phoneCC
      * @param $phone
      * @param $lang
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function signup(
         $username,
@@ -123,8 +141,7 @@ class Customers
         $phoneCC,
         $phone,
         $lang
-    )
-    {
+    ) {
         return $this->post(
             'signup',
             [
@@ -146,8 +163,10 @@ class Customers
 
     /**
      * Generates a temporary password for the specified Customer. The generated password is valid only for 3 days.
+     *
      * @param $customerId
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function tempPassword($customerId)
     {

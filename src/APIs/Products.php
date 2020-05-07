@@ -3,6 +3,7 @@
 namespace habil\ResellerClub\APIs;
 
 use habil\ResellerClub\Helper;
+use SimpleXMLElement;
 
 class Products
 {
@@ -12,7 +13,8 @@ class Products
 
     /**
      * Get customer prices
-     * @return mixed|\SimpleXMLElement
+     *
+     * @return mixed|SimpleXMLElement
      */
     public function customerPrice()
     {

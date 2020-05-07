@@ -7,6 +7,7 @@ use habil\ResellerClub\Helper;
 
 /**
  * Class Actions
+ *
  * @package habil\ResellerClub\APIs
  */
 class Actions
@@ -52,6 +53,54 @@ class Actions
     }
 
     /**
+     * @param array $eaqIds
+     * @param array $orderIds
+     * @param array $entityTypeIds
+     * @param array $actionStatus
+     * @param array $actionType
+     * @param       $noOfRecords
+     * @param       $pageNo
+     *
+     * @return array
+     */
+    private function formatData(
+        array $eaqIds,
+        array $orderIds,
+        array $entityTypeIds,
+        array $actionStatus,
+        array $actionType,
+        $noOfRecords,
+        $pageNo
+    ) {
+        $dataToSend = [
+            'no-of-records' => $noOfRecords,
+            'page-no'       => $pageNo,
+        ];
+
+        if ( ! empty($eaqIds)) {
+            $dataToSend['eaq-id'] = $eaqIds;
+        }
+
+        if ( ! empty($orderIds)) {
+            $dataToSend['order-id'] = $orderIds;
+        }
+
+        if ( ! empty($entityTypeIds)) {
+            $dataToSend['entity-type-id'] = $entityTypeIds;
+        }
+
+        if ( ! empty($actionStatus)) {
+            $dataToSend['action-status'] = $actionStatus;
+        }
+
+        if ( ! empty($actionType)) {
+            $dataToSend['action-type'] = $actionType;
+        }
+
+        return $dataToSend;
+    }
+
+    /**
      * @param array|null $eaqIds        Array of Integers
      * @param array|null $orderIds      Array of Integers
      * @param array|null $entityTypeIds Array of Integers
@@ -82,53 +131,5 @@ class Actions
         );
 
         return $this->get('search-archived', $dataToSend);
-    }
-
-    /**
-     * @param array $eaqIds
-     * @param array $orderIds
-     * @param array $entityTypeIds
-     * @param array $actionStatus
-     * @param array $actionType
-     * @param       $noOfRecords
-     * @param       $pageNo
-     *
-     * @return array
-     */
-    private function formatData(
-        array $eaqIds,
-        array $orderIds,
-        array $entityTypeIds,
-        array $actionStatus,
-        array $actionType,
-        $noOfRecords,
-        $pageNo
-    ) {
-        $dataToSend = [
-            'no-of-records' => $noOfRecords,
-            'page-no'       => $pageNo
-        ];
-
-        if (!empty($eaqIds)) {
-            $dataToSend['eaq-id'] = $eaqIds;
-        }
-
-        if (!empty($orderIds)) {
-            $dataToSend['order-id'] = $orderIds;
-        }
-
-        if (!empty($entityTypeIds)) {
-            $dataToSend['entity-type-id'] = $entityTypeIds;
-        }
-
-        if (!empty($actionStatus)) {
-            $dataToSend['action-status'] = $actionStatus;
-        }
-
-        if (!empty($actionType)) {
-            $dataToSend['action-type'] = $actionType;
-        }
-
-        return $dataToSend;
     }
 }

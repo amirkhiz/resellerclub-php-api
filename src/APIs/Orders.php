@@ -15,17 +15,23 @@ class Orders
 
     public function suspend($orderId, $reason)
     {
-        return $this->post('suspend', [
-            'order-id'  => $orderId,
-            'reason'    => $reason
-        ]);
+        return $this->post(
+            'suspend',
+            [
+                'order-id' => $orderId,
+                'reason'   => $reason,
+            ]
+        );
     }
 
     public function unsuspend($orderId, $reason)
     {
-        return $this->post('unsuspend', [
-            'order-id'  => $orderId,
-            'reason'    => $reason
-        ]);
+        return $this->post(
+            'unsuspend',
+            [
+                'order-id' => $orderId,
+                'reason'   => $reason,
+            ]
+        );
     }
 }

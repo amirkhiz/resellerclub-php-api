@@ -1,23 +1,25 @@
 {
-    "name": "habil/resellerclub-php-api",
-    "description": "PHP SDK for ResellerClub API",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Siavash Habil",
-            "email": "amirkhiz@gmail.com"
-        }
-    ],
-    "require": {
-        "ext-curl": "*",
-        "guzzlehttp/guzzle": "~6"
-    },
-    "autoload": {
-        "psr-4": {
-            "habil\\ResellerClub\\": "src/"
-        }
-    },
-    "config": {
-        "bin-dir": "bin"
+  "name": "habil/resellerclub-php-api",
+  "description": "PHP SDK for ResellerClub API",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Siavash Habil",
+      "email": "amirkhiz@gmail.com"
     }
+  ],
+  "require": {
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "~6",
+    "ext-simplexml": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "habil\\ResellerClub\\": "src/"
+    }
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
 }

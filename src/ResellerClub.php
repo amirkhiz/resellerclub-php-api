@@ -2,17 +2,22 @@
 
 namespace habil\ResellerClub;
 
+use GuzzleHttp\Client as Guzzle;
 use habil\ResellerClub\APIs\Actions;
 use habil\ResellerClub\APIs\Contacts;
 use habil\ResellerClub\APIs\Customers;
 use habil\ResellerClub\APIs\Domains;
 use habil\ResellerClub\APIs\Orders;
-use GuzzleHttp\Client as Guzzle;
 use habil\ResellerClub\APIs\Products;
 
+/**
+ * Class ResellerClub
+ *
+ * @package habil\ResellerClub
+ */
 class ResellerClub
 {
-    const API_URL      = 'https://httpapi.com/api/';
+    const API_URL = 'https://httpapi.com/api/';
     const API_TEST_URL = 'https://test.httpapi.com/api/';
 
     /**
@@ -22,18 +27,25 @@ class ResellerClub
 
     /**
      * List of API classes
+     *
      * @var array
      */
     private $apiList = [];
 
     /**
      * Authentication info needed for every request
+     *
      * @var array
      */
     private $authentication = [];
 
-    public function __construct($userId, $apiKey, $testMode = FALSE, $timeout = 0, $bindIp = '0')
-    {
+    public function __construct(
+        $userId,
+        $apiKey,
+        $testMode = false,
+        $timeout = 0,
+        $bindIp = '0'
+    ) {
         $this->authentication = [
             'auth-userid' => $userId,
             'api-key'     => $apiKey,
@@ -41,20 +53,21 @@ class ResellerClub
 
         $this->guzzle = new Guzzle(
             [
-                'base_uri' => $testMode ? self::API_TEST_URL : self::API_URL,
-                'defaults' => [
+                'base_uri'        => $testMode ? self::API_TEST_URL
+                    : self::API_URL,
+                'defaults'        => [
                     'query' => $this->authentication,
                 ],
-                'verify'   => FALSE,
+                'verify'          => false,
                 'connect_timeout' => (float)$timeout,
-                'timeout' => (float)$timeout,
-                'curl' => [
+                'timeout'         => (float)$timeout,
+                'curl'            => [
                     CURLOPT_INTERFACE => null !== $bindIp ? $bindIp : '0',
                 ],
-                'stream_context' => [
+                'stream_context'  => [
                     'socket' => [
                         'bindto' => null !== $bindIp ? $bindIp : '0',
-                    ]
+                    ],
                 ],
             ]
         );
@@ -63,8 +76,11 @@ class ResellerClub
     private function _getAPI($api)
     {
         if (empty($this->apiList[$api])) {
-            $class               = 'habil\\ResellerClub\\APIs\\' . $api;
-            $this->apiList[$api] = new $class($this->guzzle, $this->authentication);
+            $class = 'habil\\ResellerClub\\APIs\\'.$api;
+            $this->apiList[$api] = new $class(
+                $this->guzzle,
+                $this->authentication
+            );
         }
 
         return $this->apiList[$api];

@@ -2,14 +2,45 @@
 
 namespace habil\ResellerClub\APIs;
 
+use Exception;
 use habil\ResellerClub\Helper;
+use SimpleXMLElement;
 
+/**
+ * Class Contacts
+ *
+ * @package habil\ResellerClub\APIs
+ */
 class Contacts
 {
     use Helper;
 
+    /**
+     * @var string
+     */
     protected $api = 'contacts';
 
+    /**
+     * @param string $name
+     * @param string $company
+     * @param string $email
+     * @param string $address1
+     * @param string $city
+     * @param string $country
+     * @param string $zipcode
+     * @param string $phoneCC
+     * @param string $phone
+     * @param int    $customerId
+     * @param string $type
+     * @param string $address2
+     * @param string $address3
+     * @param string $state
+     * @param string $faxCC
+     * @param string $fax
+     * @param array  $attrs
+     *
+     * @return Exception|mixed|SimpleXMLElement
+     */
     public function add(
         $name,
         $company,
@@ -28,8 +59,7 @@ class Contacts
         $faxCC = '',
         $fax = '',
         $attrs = []
-    )
-    {
+    ) {
         return $this->post(
             'add',
             [
@@ -53,6 +83,25 @@ class Contacts
         );
     }
 
+    /**
+     * @param int    $contactId
+     * @param string $name
+     * @param string $company
+     * @param string $email
+     * @param string $address1
+     * @param string $city
+     * @param string $zipcode
+     * @param string $phoneCC
+     * @param string $phone
+     * @param string $address2
+     * @param string $address3
+     * @param string $state
+     * @param string $faxCC
+     * @param string $fax
+     * @param string $country
+     *
+     * @return mixed
+     */
     public function modify(
         $contactId,
         $name,
@@ -68,9 +117,8 @@ class Contacts
         $state = '',
         $faxCC = '',
         $fax = '',
-        $country=''
-    )
-    {
+        $country = ''
+    ) {
         return $this->post(
             'modify',
             [
@@ -93,11 +141,29 @@ class Contacts
         );
     }
 
+    /**
+     * @param int $contactId
+     *
+     * @return mixed
+     */
     public function getContact($contactId)
     {
         return $this->get('details', ['contact-id' => $contactId]);
     }
 
+    /**
+     * @param int    $customerId
+     * @param int    $records
+     * @param int    $page
+     * @param array  $contactIds
+     * @param array  $status
+     * @param string $name
+     * @param string $company
+     * @param string $email
+     * @param string $type
+     *
+     * @return mixed
+     */
     public function search(
         $customerId,
         $records = 10,
@@ -108,36 +174,35 @@ class Contacts
         $company = '',
         $email = '',
         $type = ''
-    )
-    {
+    ) {
         $data = [
             'customer-id'   => $customerId,
             'no-of-records' => $records,
             'page-no'       => $page,
         ];
 
-        if (!empty($contactIds)) {
+        if ( ! empty($contactIds)) {
             $data['contact-id'] = $contactIds;
         }
 
-        if (!empty($status)) {
+        if ( ! empty($status)) {
             // InActive, Active, Suspended, Deleted
             $data['status'] = $status;
         }
 
-        if (!empty($name)) {
+        if ( ! empty($name)) {
             $data['name'] = $name;
         }
 
-        if (!empty($company)) {
+        if ( ! empty($company)) {
             $data['company'] = $company;
         }
 
-        if (!empty($email)) {
+        if ( ! empty($email)) {
             $data['email'] = $email;
         }
 
-        if (!empty($type)) {
+        if ( ! empty($type)) {
             // Contact, CoopContact, UkContact, EuContact, Sponsor, CnContact, CoContact, CaContact, DeContact, EsContact
             $data['type'] = $type;
         }
@@ -145,21 +210,63 @@ class Contacts
         return $this->get('search', $data);
     }
 
+    /**
+     * @param int      $customerId
+     * @param string[] $type
+     *
+     * @return mixed
+     */
     public function getDefault($customerId, $type)
     {
-        return $this->post('default', ['customer-id' => $customerId, 'type' => $type]);
+        return $this->post(
+            'default',
+            ['customer-id' => $customerId, 'type' => $type]
+        );
     }
 
+    /**
+     * @param int   $contactId
+     * @param array $attributes
+     *
+     * @return mixed
+     */
     public function setDetails($contactId, $attributes)
     {
-        return $this->post('set-details', ['contact-id' => $contactId] + $this->processAttributes($attributes));
+        return $this->post(
+            'set-details',
+            ['contact-id' => $contactId] + $this->processAttributes($attributes)
+        );
     }
 
+    /**
+     * @param int $contactId
+     *
+     * @return mixed
+     */
     public function delete($contactId)
     {
         return $this->post('delete', ['contact-id' => $contactId]);
     }
 
+    /**
+     * @param string $name
+     * @param string $company
+     * @param string $email
+     * @param string $address1
+     * @param string $city
+     * @param string $country
+     * @param string $zipcode
+     * @param string $phoneCC
+     * @param string $phone
+     * @param int    $customerId
+     * @param string $address2
+     * @param string $address3
+     * @param string $state
+     * @param string $faxCC
+     * @param string $fax
+     *
+     * @return mixed
+     */
     public function addSponsor(
         $name,
         $company,
@@ -176,8 +283,7 @@ class Contacts
         $state = '',
         $faxCC = '',
         $fax = ''
-    )
-    {
+    ) {
         return $this->post(
             'add-sponsor',
             [
@@ -196,23 +302,39 @@ class Contacts
                 'state'          => $state,
                 'fax-cc'         => $faxCC,
                 'fax'            => $fax,
-            ], 'coop'
+            ],
+            'coop'
         );
     }
 
+    /**
+     * @param int $customerId
+     *
+     * @return mixed
+     */
     public function getSponsors($customerId)
     {
         return $this->get('sponsors', ['customer-id' => $customerId], 'coop');
     }
 
+    /**
+     * @return mixed
+     */
     public function getCaRegistrantAgreement()
     {
         return $this->get('registrantagreement', [], 'dotca');
     }
 
+    /**
+     * @param int   $contactId
+     * @param array $check
+     *
+     * @return mixed
+     */
     public function validateContact(
         $contactId,
-        $check = [
+        $check
+        = [
             'CED_ASIAN_COUNTRY',
             'CED_DETAILS',
             'CPR',
@@ -221,8 +343,10 @@ class Contacts
             'RU_CONTACT_INFO',
             'APP_PREF_NEXUS',
         ]
-    )
-    {
-        return $this->get('validate-registrant', ['contact-id' => $contactId, 'eligibility-criteria' => $check]);
+    ) {
+        return $this->get(
+            'validate-registrant',
+            ['contact-id' => $contactId, 'eligibility-criteria' => $check]
+        );
     }
 }
