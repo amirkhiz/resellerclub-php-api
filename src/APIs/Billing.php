@@ -31,7 +31,7 @@ class Billing
         return $this->get('customer-transactions', ['customer-id' => $customerId]);
     }
 
-        /**
+   /**
      * @param int    $records
      * @param int    $page
      * @param array  $customerId
