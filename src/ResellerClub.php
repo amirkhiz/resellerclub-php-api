@@ -4,6 +4,7 @@ namespace habil\ResellerClub;
 
 use GuzzleHttp\Client as Guzzle;
 use habil\ResellerClub\APIs\Actions;
+use habil\ResellerClub\APIs\Billing;
 use habil\ResellerClub\APIs\Contacts;
 use habil\ResellerClub\APIs\Customers;
 use habil\ResellerClub\APIs\Domains;
@@ -126,6 +127,14 @@ class ResellerClub
         return $this->_getAPI('Orders');
     }
 
+    /**
+     * @return Billing
+     */
+    public function billing()
+    {
+        return $this->_getAPI('Billing');
+    }
+    
     /**
      * @return Actions
      */
