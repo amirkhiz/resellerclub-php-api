@@ -22,7 +22,7 @@ class Billing
     /**
      * Gets the transaction details for the specified Customer Id.
      *
-     * @param $customerId
+     * @param int $customerId
      *
      * @return array
      */
@@ -122,4 +122,3 @@ class Billing
     }
 
 }
-
