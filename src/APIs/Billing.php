@@ -24,11 +24,11 @@ class Billing
      *
      * @param $customerId
      *
-     * @return mixed|SimpleXMLElement
+     * @return array
      */
     public function customerTransactions($customerId)
     {
-        return $this->get('customer-transactions', ['customer-id' => $customerId, 'transaction-ids' => 99210620]);
+        return $this->get('customer-transactions', ['customer-id' => $customerId]);
     }
 
         /**
@@ -47,7 +47,7 @@ class Billing
      * @param string $transactionDateEnd
      * @param string $orderBy
      *
-     * @return mixed
+     * @return array
      */
     public function search(
         $records = 10,
