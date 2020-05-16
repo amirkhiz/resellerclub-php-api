@@ -2,8 +2,8 @@
 
 namespace habil\ResellerClub\APIs;
 
+use Exception;
 use habil\ResellerClub\Helper;
-use SimpleXMLElement;
 
 /**
  * Class Billing
@@ -25,13 +25,17 @@ class Billing
      * @param int $customerId
      *
      * @return array
+     * @throws Exception
      */
     public function customerTransactions($customerId)
     {
-        return $this->get('customer-transactions', ['customer-id' => $customerId]);
+        return $this->get(
+            'customer-transactions',
+            ['customer-id' => $customerId]
+        );
     }
 
-   /**
+    /**
      * @param int    $records
      * @param int    $page
      * @param array  $customerId
@@ -48,6 +52,7 @@ class Billing
      * @param string $orderBy
      *
      * @return array
+     * @throws Exception
      */
     public function search(
         $records = 10,
@@ -65,60 +70,25 @@ class Billing
         $transactionDateEnd = '',
         $orderBy = ''
     ) {
-        $data = [
-            'no-of-records' => $records,
-            'page-no'       => $page,
-        ];
+        $data = $this->fillParameters(
+            [
+                'no-of-records'           => $records,
+                'page-no'                 => $page,
+                'customer-id'             => $customerId,
+                'username'                => $username,
+                'transaction-type'        => $transactionType,
+                'transaction-key'         => $transactionKey,
+                'transaction-id'          => $transactionId,
+                'transaction-description' => $transactionDescription,
+                'balance-type'            => $balanceType,
+                'amt-range-start'         => $amtRangeStart,
+                'amt-range-end'           => $amtRangeEnd,
+                'transaction-date-start'  => $transactionDateStart,
+                'transaction-date-end'    => $transactionDateEnd,
+                'order-by'                => $orderBy,
+            ]
+        );
 
-        if ( ! empty($customerId)) {
-            $data['customer-id'] = $customerId;
-        }
-
-        if ( ! empty($username)) {
-            $data['username'] = $username;
-        }
-
-        if ( ! empty($transactionType)) {
-            $data['transaction-type'] = $transactionType;
-        }
-
-        if ( ! empty($transactionKey)) {
-            $data['transaction-key'] = $transactionKey;
-        }
-
-        if ( ! empty($transactionId)) {
-            $data['transaction-id'] = $transactionId;
-        }
-
-        if ( ! empty($transactionDescription)) {
-            $data['transaction-description'] = $transactionDescription;
-        }
-
-        if ( ! empty($balanceType)) {
-            $data['balance-type'] = $balanceType;
-        }
-
-        if ( ! empty($amtRangeStart)) {
-            $data['amt-range-start'] = $amtRangeStart;
-        }
-
-        if ( ! empty($amtRangeEnd)) {
-            $data['amt-range-end'] = $amtRangeEnd;
-        }
-
-        if ( ! empty($transactionDateStart)) {
-            $data['transaction-date-start'] = $transactionDateStart;
-        }
-
-        if ( ! empty($transactionDateEnd)) {
-            $data['transaction-date-end'] = $transactionDateEnd;
-        }
-
-        if ( ! empty($orderBy)) {
-            $data['order-by'] = $orderBy;
-        }
-
-        return $this->get('search', $data,'customer-transactions/');
+        return $this->get('search', $data, 'customer-transactions/');
     }
-
 }

@@ -29,6 +29,7 @@ class Actions
      * @param int        $pageNo
      *
      * @return Exception|array
+     * @throws Exception
      */
     public function current(
         array $eaqIds = [],
@@ -110,6 +111,7 @@ class Actions
      * @param int        $pageNo
      *
      * @return Exception|array
+     * @throws Exception
      */
     public function archived(
         array $eaqIds = [],

@@ -134,7 +134,7 @@ class ResellerClub
     {
         return $this->_getAPI('Billing');
     }
-    
+
     /**
      * @return Actions
      */

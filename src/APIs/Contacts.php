@@ -40,6 +40,7 @@ class Contacts
      * @param array  $attrs
      *
      * @return Exception|mixed|SimpleXMLElement
+     * @throws Exception
      */
     public function add(
         $name,
@@ -101,6 +102,7 @@ class Contacts
      * @param string $country
      *
      * @return mixed
+     * @throws Exception
      */
     public function modify(
         $contactId,
@@ -145,6 +147,7 @@ class Contacts
      * @param int $contactId
      *
      * @return mixed
+     * @throws Exception
      */
     public function getContact($contactId)
     {
@@ -156,13 +159,14 @@ class Contacts
      * @param int    $records
      * @param int    $page
      * @param array  $contactIds
-     * @param array  $status
+     * @param array  $status Possible values [InActive, Active, Suspended, Deleted]
      * @param string $name
      * @param string $company
      * @param string $email
-     * @param string $type
+     * @param string $type   Possible values [Contact, CoopContact, UkContact, EuContact, Sponsor, CnContact, CoContact, CaContact, DeContact, EsContact]
      *
      * @return mixed
+     * @throws Exception
      */
     public function search(
         $customerId,
@@ -175,37 +179,19 @@ class Contacts
         $email = '',
         $type = ''
     ) {
-        $data = [
-            'customer-id'   => $customerId,
-            'no-of-records' => $records,
-            'page-no'       => $page,
-        ];
-
-        if ( ! empty($contactIds)) {
-            $data['contact-id'] = $contactIds;
-        }
-
-        if ( ! empty($status)) {
-            // InActive, Active, Suspended, Deleted
-            $data['status'] = $status;
-        }
-
-        if ( ! empty($name)) {
-            $data['name'] = $name;
-        }
-
-        if ( ! empty($company)) {
-            $data['company'] = $company;
-        }
-
-        if ( ! empty($email)) {
-            $data['email'] = $email;
-        }
-
-        if ( ! empty($type)) {
-            // Contact, CoopContact, UkContact, EuContact, Sponsor, CnContact, CoContact, CaContact, DeContact, EsContact
-            $data['type'] = $type;
-        }
+        $data = $this->fillParameters(
+            [
+                'customer-id'   => $customerId,
+                'no-of-records' => $records,
+                'page-no'       => $page,
+                'contact-id'    => $contactIds,
+                'status'        => $status,
+                'name'          => $name,
+                'company'       => $company,
+                'email'         => $email,
+                'type'          => $type,
+            ]
+        );
 
         return $this->get('search', $data);
     }
@@ -215,6 +201,7 @@ class Contacts
      * @param string[] $type
      *
      * @return mixed
+     * @throws Exception
      */
     public function getDefault($customerId, $type)
     {
@@ -229,6 +216,7 @@ class Contacts
      * @param array $attributes
      *
      * @return mixed
+     * @throws Exception
      */
     public function setDetails($contactId, $attributes)
     {
@@ -242,6 +230,7 @@ class Contacts
      * @param int $contactId
      *
      * @return mixed
+     * @throws Exception
      */
     public function delete($contactId)
     {
@@ -266,6 +255,7 @@ class Contacts
      * @param string $fax
      *
      * @return mixed
+     * @throws Exception
      */
     public function addSponsor(
         $name,
@@ -311,6 +301,7 @@ class Contacts
      * @param int $customerId
      *
      * @return mixed
+     * @throws Exception
      */
     public function getSponsors($customerId)
     {
@@ -319,6 +310,7 @@ class Contacts
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function getCaRegistrantAgreement()
     {
@@ -330,6 +322,7 @@ class Contacts
      * @param array $check
      *
      * @return mixed
+     * @throws Exception
      */
     public function validateContact(
         $contactId,
