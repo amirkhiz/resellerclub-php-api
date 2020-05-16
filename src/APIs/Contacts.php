@@ -41,6 +41,7 @@ class Contacts
      *
      * @return Exception|mixed|SimpleXMLElement
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/790
      */
     public function add(
         $name,
@@ -103,6 +104,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/791
      */
     public function modify(
         $contactId,
@@ -148,6 +150,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/792
      */
     public function getContact($contactId)
     {
@@ -167,6 +170,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/793
      */
     public function search(
         $customerId,
@@ -202,6 +206,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/794
      */
     public function getDefault($customerId, $type)
     {
@@ -217,6 +222,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/3071
      */
     public function setDetails($contactId, $attributes)
     {
@@ -231,6 +237,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/796
      */
     public function delete($contactId)
     {
@@ -256,6 +263,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/797
      */
     public function addSponsor(
         $name,
@@ -302,6 +310,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/798
      */
     public function getSponsors($customerId)
     {
@@ -311,6 +320,7 @@ class Contacts
     /**
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/1069
      */
     public function getCaRegistrantAgreement()
     {
@@ -323,6 +333,7 @@ class Contacts
      *
      * @return mixed
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/1505
      */
     public function validateContact(
         $contactId,

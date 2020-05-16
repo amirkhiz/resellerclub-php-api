@@ -26,6 +26,7 @@ class Billing
      *
      * @return array
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/868
      */
     public function customerTransactions($customerId)
     {
@@ -53,6 +54,7 @@ class Billing
      *
      * @return array
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/964
      */
     public function search(
         $records = 10,

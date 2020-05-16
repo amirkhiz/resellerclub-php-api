@@ -28,6 +28,7 @@ class Customers
      *
      * @return mixed|SimpleXMLElement
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/806
      */
     public function changePassword($customerId, $newPassword)
     {
@@ -44,6 +45,7 @@ class Customers
      *
      * @return mixed|SimpleXMLElement
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/874
      */
     public function details($username)
     {
@@ -57,6 +59,7 @@ class Customers
      *
      * @return mixed|SimpleXMLElement
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/967
      */
     public function detailsById($customerId)
     {
@@ -81,6 +84,7 @@ class Customers
      *
      * @return mixed|SimpleXMLElement
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/805
      * @todo Check documents there is some updates in this method parameters
      */
     public function modify(
@@ -134,6 +138,7 @@ class Customers
      *
      * @return mixed|SimpleXMLElement
      * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/804
      * @todo Check documents there is some updates in this method parameters
      */
     public function signup(
