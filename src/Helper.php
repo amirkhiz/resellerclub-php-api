@@ -46,7 +46,7 @@ trait Helper
      * @param array  $args
      * @param string $prefix
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return Exception|array
      * @throws Exception
      */
     protected function get($method, $args = [], $prefix = '')
@@ -79,7 +79,7 @@ trait Helper
      * @param array  $args
      * @param string $prefix
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return Exception|SimpleXMLElement
      * @throws Exception
      */
     protected function getXML($method, $args = [], $prefix = '')
@@ -113,7 +113,7 @@ trait Helper
      * @param array  $args
      * @param string $prefix
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return Exception|array
      * @throws Exception
      */
     protected function post($method, $args = [], $prefix = '')
@@ -148,7 +148,7 @@ trait Helper
      * @param string $args
      * @param string $prefix
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return Exception|array
      * @throws Exception
      */
     public function postArgString($method, $args = '', $prefix = '')
@@ -181,7 +181,7 @@ trait Helper
      * @param ResponseInterface $response
      * @param string            $type
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|SimpleXMLElement
      * @throws Exception
      */
     protected function parse(ResponseInterface $response, $type = 'json')
