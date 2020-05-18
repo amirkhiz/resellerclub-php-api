@@ -26,7 +26,7 @@ class Domains
      * @param string[] $tlds
      * @param bool     $suggestAlternative
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/764
      * @todo It seems "suggest-alternative" parameter removed.
@@ -51,7 +51,7 @@ class Domains
      * @param string   $tld
      * @param string   $languageCode
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1429
      */
@@ -74,7 +74,7 @@ class Domains
      * @param int      $priceHigh
      * @param int      $priceLow
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1948
      */
@@ -115,7 +115,7 @@ class Domains
      * @param string $phoneCC
      * @param string $phone
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2187
      */
@@ -160,7 +160,7 @@ class Domains
      * @param string $tld
      * @param bool   $exactMatch
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link     https://manage.logicboxes.com/kb/node/1085
      */
@@ -191,7 +191,7 @@ class Domains
      * @param bool     $protectPrivacy
      * @param array    $additional
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/752
      */
@@ -242,7 +242,7 @@ class Domains
      * @param bool     $protectPrivacy
      * @param array    $additional
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/758
      */
@@ -284,7 +284,7 @@ class Domains
      * @param int    $orderId
      * @param string $code Domain Secret or Authorization Code, for the domain name being transferred.
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2446
      */
@@ -303,7 +303,7 @@ class Domains
     /**
      * @param string $domain
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1150
      */
@@ -324,7 +324,7 @@ class Domains
      * @param boolean $purchasePrivacy
      * @param string  $invoice Available options [NoInvoice, PayInvoice, KeepInvoice, OnlyAdd]
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/746
      */
@@ -361,7 +361,7 @@ class Domains
      * @param string   $expireStart
      * @param string   $expireEnd
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/771
      */
@@ -420,7 +420,7 @@ class Domains
     /**
      * @param int $customerId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/788
      */
@@ -435,7 +435,7 @@ class Domains
     /**
      * @param string $domain
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/763
      */
@@ -448,7 +448,7 @@ class Domains
      * @param int   $orderId
      * @param array $options Available options [All, OrderDetails, ContactIds, RegistrantContactDetails, AdminContactDetails, TechContactDetails, BillingContactDetails, NsDetails, DomainStatus, DNSSECDetails, StatusDetails]
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/770
      */
@@ -467,7 +467,7 @@ class Domains
      * @param string $domain
      * @param array  $options Available options [All, OrderDetails, ContactIds, RegistrantContactDetails, AdminContactDetails, TechContactDetails, BillingContactDetails, NsDetails, DomainStatus, DNSSECDetails]
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1755
      */
@@ -486,7 +486,7 @@ class Domains
      * @param int      $orderId
      * @param string[] $ns
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/776
      */
@@ -508,7 +508,7 @@ class Domains
      * @param string   $cns
      * @param string[] $ip
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/780
      */
@@ -529,7 +529,7 @@ class Domains
      * @param string $oldCNS
      * @param string $newCNS
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/781
      */
@@ -551,7 +551,7 @@ class Domains
      * @param string $oldIP
      * @param string $newIP
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/782
      */
@@ -573,7 +573,7 @@ class Domains
      * @param string   $cns
      * @param string[] $ip
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/934
      */
@@ -596,7 +596,7 @@ class Domains
      * @param int $techContactId
      * @param int $billingContactId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/777
      */
@@ -623,7 +623,7 @@ class Domains
      * @param int    $orderId
      * @param string $invoiceOption Available options [NoInvoice, PayInvoice, KeepInvoice, OnlyAdd]
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2085
      */
@@ -643,7 +643,7 @@ class Domains
      * @param boolean $protectPrivacy
      * @param string  $reason
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/778
      */
@@ -663,7 +663,7 @@ class Domains
      * @param int    $orderId
      * @param string $authCode
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/779
      */
@@ -681,7 +681,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/902
      */
@@ -693,7 +693,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/903
      */
@@ -708,7 +708,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/897
      */
@@ -720,7 +720,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      */
     public function getCthDetails($orderId)
@@ -733,7 +733,7 @@ class Domains
      * @param string $type    Available options [Natural, Legal]
      * @param string $publish This parameter is required if whois-type parameter is Natural, otherwise is it Optional.
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/773
      */
@@ -753,7 +753,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/775
      */
@@ -767,7 +767,7 @@ class Domains
      * @param string $tag Tag of the new Registrar. For a two character tag, it is necessary to prepend the tag with a # character.
      *                    Example: The tag VI needs to be mentioned as #VI.
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/785
      */
@@ -783,7 +783,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/759
      */
@@ -795,7 +795,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/745
      */
@@ -808,7 +808,7 @@ class Domains
      * @param int    $orderId
      * @param string $invoice Available options [NoInvoice, PayInvoice, KeepInvoice]
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/760
      */
@@ -823,7 +823,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1138
      */
@@ -836,7 +836,7 @@ class Domains
      * @param int    $orderId
      * @param string $id
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1309
      */
@@ -852,7 +852,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      */
     public function getXXXAssociation($orderId)
@@ -868,7 +868,7 @@ class Domains
      * @param int   $orderId
      * @param array $attributes
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1910
      */
@@ -883,7 +883,7 @@ class Domains
      * @param int   $orderId
      * @param array $attributes
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1911
      */
@@ -897,7 +897,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2010
      */
@@ -914,7 +914,7 @@ class Domains
      * @param int      $customerId
      * @param string[] $domains
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2012
      */
@@ -931,7 +931,7 @@ class Domains
      * @param int      $customerId
      * @param string[] $domain
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2013
      */
@@ -954,7 +954,7 @@ class Domains
      * @param bool  $createdStart
      * @param bool  $createdEnd
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2014
      */
@@ -1003,7 +1003,7 @@ class Domains
     /**
      * @param string $category Available options [adult, arts and media, beauty and fashion, business and commerce, education, finance, food and drink, generic, geo cultural, government and politics, health, idn, news and information, novelty, people and lifestyle, real estate, religion, services, sports and games, technology, travel]
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2015
      */
@@ -1021,7 +1021,7 @@ class Domains
      * @param string[] $tlds
      * @param string   $smd
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2016
      * @todo "sld" parameter should change to "domainname"
@@ -1041,7 +1041,7 @@ class Domains
     /**
      * @param string $claimKey
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2029
      */
@@ -1053,7 +1053,7 @@ class Domains
     /**
      * @param string $phase
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2039
      */
@@ -1063,7 +1063,7 @@ class Domains
     }
 
     /**
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/2466
      */
@@ -1075,7 +1075,7 @@ class Domains
     /**
      * @param string $slds
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/3053
      */
@@ -1093,7 +1093,7 @@ class Domains
      * @param int    $orderId
      * @param string $reason
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      */
     public function lock($orderId, $reason)
@@ -1111,7 +1111,7 @@ class Domains
     /**
      * @param int $orderId
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      */
     public function unlock($orderId)

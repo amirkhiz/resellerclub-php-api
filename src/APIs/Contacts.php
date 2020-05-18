@@ -39,7 +39,7 @@ class Contacts
      * @param string $fax
      * @param array  $attrs
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/790
      */
@@ -102,7 +102,7 @@ class Contacts
      * @param string $fax
      * @param string $country
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/791
      */
@@ -148,7 +148,7 @@ class Contacts
     /**
      * @param int $contactId
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/792
      */
@@ -168,7 +168,7 @@ class Contacts
      * @param string $email
      * @param string $type   Possible values [Contact, CoopContact, UkContact, EuContact, Sponsor, CnContact, CoContact, CaContact, DeContact, EsContact]
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/793
      */
@@ -204,7 +204,7 @@ class Contacts
      * @param int      $customerId
      * @param string[] $type
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/794
      */
@@ -220,7 +220,7 @@ class Contacts
      * @param int   $contactId
      * @param array $attributes
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/3071
      */
@@ -235,7 +235,7 @@ class Contacts
     /**
      * @param int $contactId
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/796
      */
@@ -261,7 +261,7 @@ class Contacts
      * @param string $faxCC
      * @param string $fax
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/797
      */
@@ -308,7 +308,7 @@ class Contacts
     /**
      * @param int $customerId
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/798
      */
@@ -318,7 +318,7 @@ class Contacts
     }
 
     /**
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1069
      */
@@ -331,7 +331,7 @@ class Contacts
      * @param int   $contactId
      * @param array $check
      *
-     * @return mixed
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/1505
      */

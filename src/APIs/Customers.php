@@ -26,7 +26,7 @@ class Customers
      * @param int    $customerId
      * @param string $newPassword
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/806
      */
@@ -43,7 +43,7 @@ class Customers
      *
      * @param string $username
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/874
      */
@@ -57,7 +57,7 @@ class Customers
      *
      * @param int $customerId
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/967
      */
@@ -82,7 +82,7 @@ class Customers
      * @param string $phone
      * @param string $lang
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/805
      * @todo Check documents there is some updates in this method parameters
@@ -136,7 +136,7 @@ class Customers
      * @param string $phone
      * @param string $lang
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/804
      * @todo Check documents there is some updates in this method parameters
@@ -179,7 +179,7 @@ class Customers
      *
      * @param int $customerId
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      */
     public function tempPassword($customerId)

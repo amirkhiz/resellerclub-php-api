@@ -21,7 +21,7 @@ class Products
     /**
      * Get customer prices
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/864
      * @todo Add optional parameters

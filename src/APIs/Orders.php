@@ -24,7 +24,7 @@ class Orders
      * @param int    $orderId
      * @param string $reason
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/answer/1077
      */
@@ -43,7 +43,7 @@ class Orders
      * @param int    $orderId
      * @param string $reason
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/answer/1078
      * @todo "reason" parameter does not exist in the documents.

@@ -24,7 +24,7 @@ class Billing
      *
      * @param int $customerId
      *
-     * @return array
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/868
      */
@@ -52,7 +52,7 @@ class Billing
      * @param string $transactionDateEnd
      * @param string $orderBy
      *
-     * @return array
+     * @return array|Exception
      * @throws Exception
      * @link https://manage.logicboxes.com/kb/node/964
      */
