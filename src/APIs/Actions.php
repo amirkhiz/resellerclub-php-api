@@ -20,13 +20,13 @@ class Actions
     protected $api = 'actions';
 
     /**
-     * @param array|null $eaqIds        Array of Integers
-     * @param array|null $orderIds      Array of Integers
-     * @param array|null $entityTypeIds Array of Integers
-     * @param array|null $actionStatus  Array of Strings
-     * @param array|null $actionType    Array of Strings
-     * @param int        $noOfRecords
-     * @param int        $pageNo
+     * @param array $eaqIds        Array of Integers
+     * @param array $orderIds      Array of Integers
+     * @param array $entityTypeIds Array of Integers
+     * @param array $actionStatus  Array of Strings
+     * @param array $actionType    Array of Strings
+     * @param int   $noOfRecords
+     * @param int   $pageNo
      *
      * @return Exception|array
      * @throws Exception
@@ -57,13 +57,13 @@ class Actions
     }
 
     /**
-     * @param array|null $eaqIds        Array of Integers
-     * @param array|null $orderIds      Array of Integers
-     * @param array|null $entityTypeIds Array of Integers
-     * @param array|null $actionStatus  Array of Strings
-     * @param array|null $actionType    Array of Strings
-     * @param int        $noOfRecords
-     * @param int        $pageNo
+     * @param array $eaqIds        Array of Integers
+     * @param array $orderIds      Array of Integers
+     * @param array $entityTypeIds Array of Integers
+     * @param array $actionStatus  Array of Strings
+     * @param array $actionType    Array of Strings
+     * @param int   $noOfRecords
+     * @param int   $pageNo
      *
      * @return Exception|array
      * @throws Exception
