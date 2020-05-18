@@ -11,6 +11,10 @@ use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use SimpleXMLElement;
 
+/**
+ * Trait Helper
+ * @package habil\ResellerClub
+ */
 trait Helper
 {
     /**
