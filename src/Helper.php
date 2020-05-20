@@ -11,6 +11,10 @@ use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use SimpleXMLElement;
 
+/**
+ * Trait Helper
+ * @package habil\ResellerClub
+ */
 trait Helper
 {
     /**
@@ -25,12 +29,26 @@ trait Helper
      */
     private $authentication = [];
 
+    /**
+     * Helper constructor.
+     *
+     * @param Guzzle $guzzle
+     * @param array  $authentication
+     */
     public function __construct(Guzzle $guzzle, array $authentication)
     {
         $this->authentication = $authentication;
         $this->guzzle = $guzzle;
     }
 
+    /**
+     * @param string $method
+     * @param array  $args
+     * @param string $prefix
+     *
+     * @return Exception|array
+     * @throws Exception
+     */
     protected function get($method, $args = [], $prefix = '')
     {
         try {
@@ -56,6 +74,14 @@ trait Helper
         }
     }
 
+    /**
+     * @param string $method
+     * @param array  $args
+     * @param string $prefix
+     *
+     * @return Exception|SimpleXMLElement
+     * @throws Exception
+     */
     protected function getXML($method, $args = [], $prefix = '')
     {
         try {
@@ -82,6 +108,14 @@ trait Helper
         }
     }
 
+    /**
+     * @param string $method
+     * @param array  $args
+     * @param string $prefix
+     *
+     * @return Exception|array
+     * @throws Exception
+     */
     protected function post($method, $args = [], $prefix = '')
     {
         //Todo use middleware to merge default values in guzzle
@@ -109,6 +143,14 @@ trait Helper
         }
     }
 
+    /**
+     * @param string $method
+     * @param string $args
+     * @param string $prefix
+     *
+     * @return Exception|array
+     * @throws Exception
+     */
     public function postArgString($method, $args = '', $prefix = '')
     {
         $authenticationString = http_build_query($this->authentication);
@@ -139,7 +181,7 @@ trait Helper
      * @param ResponseInterface $response
      * @param string            $type
      *
-     * @return mixed|SimpleXMLElement
+     * @return array|SimpleXMLElement
      * @throws Exception
      */
     protected function parse(ResponseInterface $response, $type = 'json')
@@ -157,6 +199,11 @@ trait Helper
         }
     }
 
+    /**
+     * @param array $attributes
+     *
+     * @return array
+     */
     protected function processAttributes($attributes = [])
     {
         $data = [];
@@ -169,5 +216,24 @@ trait Helper
         }
 
         return $data;
+    }
+
+    /**
+     * Fill exist parameters with the same key in the output array
+     *
+     * @param array $parameters
+     *
+     * @return array
+     */
+    protected function fillParameters($parameters)
+    {
+        $output = [];
+        foreach ($parameters as $parameter => $input) {
+            if ( ! empty($input)) {
+                $output[$parameter] = $input;
+            }
+        }
+
+        return $output;
     }
 }

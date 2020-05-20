@@ -40,6 +40,15 @@ class ResellerClub
      */
     private $authentication = [];
 
+    /**
+     * ResellerClub constructor.
+     *
+     * @param        $userId
+     * @param        $apiKey
+     * @param bool   $testMode
+     * @param int    $timeout
+     * @param string $bindIp
+     */
     public function __construct(
         $userId,
         $apiKey,
@@ -74,6 +83,11 @@ class ResellerClub
         );
     }
 
+    /**
+     * @param $api
+     *
+     * @return mixed
+     */
     private function _getAPI($api)
     {
         if (empty($this->apiList[$api])) {
@@ -134,7 +148,7 @@ class ResellerClub
     {
         return $this->_getAPI('Billing');
     }
-    
+
     /**
      * @return Actions
      */

@@ -39,7 +39,9 @@ class Contacts
      * @param string $fax
      * @param array  $attrs
      *
-     * @return Exception|mixed|SimpleXMLElement
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/790
      */
     public function add(
         $name,
@@ -100,7 +102,9 @@ class Contacts
      * @param string $fax
      * @param string $country
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/791
      */
     public function modify(
         $contactId,
@@ -144,7 +148,9 @@ class Contacts
     /**
      * @param int $contactId
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/792
      */
     public function getContact($contactId)
     {
@@ -156,13 +162,15 @@ class Contacts
      * @param int    $records
      * @param int    $page
      * @param array  $contactIds
-     * @param array  $status
+     * @param array  $status Possible values [InActive, Active, Suspended, Deleted]
      * @param string $name
      * @param string $company
      * @param string $email
-     * @param string $type
+     * @param string $type   Possible values [Contact, CoopContact, UkContact, EuContact, Sponsor, CnContact, CoContact, CaContact, DeContact, EsContact]
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/793
      */
     public function search(
         $customerId,
@@ -175,37 +183,19 @@ class Contacts
         $email = '',
         $type = ''
     ) {
-        $data = [
-            'customer-id'   => $customerId,
-            'no-of-records' => $records,
-            'page-no'       => $page,
-        ];
-
-        if ( ! empty($contactIds)) {
-            $data['contact-id'] = $contactIds;
-        }
-
-        if ( ! empty($status)) {
-            // InActive, Active, Suspended, Deleted
-            $data['status'] = $status;
-        }
-
-        if ( ! empty($name)) {
-            $data['name'] = $name;
-        }
-
-        if ( ! empty($company)) {
-            $data['company'] = $company;
-        }
-
-        if ( ! empty($email)) {
-            $data['email'] = $email;
-        }
-
-        if ( ! empty($type)) {
-            // Contact, CoopContact, UkContact, EuContact, Sponsor, CnContact, CoContact, CaContact, DeContact, EsContact
-            $data['type'] = $type;
-        }
+        $data = $this->fillParameters(
+            [
+                'customer-id'   => $customerId,
+                'no-of-records' => $records,
+                'page-no'       => $page,
+                'contact-id'    => $contactIds,
+                'status'        => $status,
+                'name'          => $name,
+                'company'       => $company,
+                'email'         => $email,
+                'type'          => $type,
+            ]
+        );
 
         return $this->get('search', $data);
     }
@@ -214,7 +204,9 @@ class Contacts
      * @param int      $customerId
      * @param string[] $type
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/794
      */
     public function getDefault($customerId, $type)
     {
@@ -228,7 +220,9 @@ class Contacts
      * @param int   $contactId
      * @param array $attributes
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/3071
      */
     public function setDetails($contactId, $attributes)
     {
@@ -241,7 +235,9 @@ class Contacts
     /**
      * @param int $contactId
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/796
      */
     public function delete($contactId)
     {
@@ -265,7 +261,9 @@ class Contacts
      * @param string $faxCC
      * @param string $fax
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/797
      */
     public function addSponsor(
         $name,
@@ -310,7 +308,9 @@ class Contacts
     /**
      * @param int $customerId
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/798
      */
     public function getSponsors($customerId)
     {
@@ -318,7 +318,9 @@ class Contacts
     }
 
     /**
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/1069
      */
     public function getCaRegistrantAgreement()
     {
@@ -329,7 +331,9 @@ class Contacts
      * @param int   $contactId
      * @param array $check
      *
-     * @return mixed
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/1505
      */
     public function validateContact(
         $contactId,

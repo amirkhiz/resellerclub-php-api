@@ -20,15 +20,17 @@ class Actions
     protected $api = 'actions';
 
     /**
-     * @param array|null $eaqIds        Array of Integers
-     * @param array|null $orderIds      Array of Integers
-     * @param array|null $entityTypeIds Array of Integers
-     * @param array|null $actionStatus  Array of Strings
-     * @param array|null $actionType    Array of Strings
-     * @param int        $noOfRecords
-     * @param int        $pageNo
+     * @param array $eaqIds        Array of Integers
+     * @param array $orderIds      Array of Integers
+     * @param array $entityTypeIds Array of Integers
+     * @param array $actionStatus  Array of Strings
+     * @param array $actionType    Array of Strings
+     * @param int   $noOfRecords
+     * @param int   $pageNo
      *
      * @return Exception|array
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/908
      */
     public function current(
         array $eaqIds = [],
@@ -39,77 +41,33 @@ class Actions
         $noOfRecords = 10,
         $pageNo = 1
     ) {
-        $dataToSend = $this->formatData(
-            $eaqIds,
-            $orderIds,
-            $entityTypeIds,
-            $actionStatus,
-            $actionType,
-            $noOfRecords,
-            $pageNo
+        $dataToSend = $this->fillParameters(
+            [
+                'no-of-records'  => $noOfRecords,
+                'page-no'        => $pageNo,
+                'eaq-id'         => $eaqIds,
+                'order-id'       => $orderIds,
+                'entity-type-id' => $entityTypeIds,
+                'action-status'  => $actionStatus,
+                'action-type'    => $actionType,
+            ]
         );
 
         return $this->get('search-current', $dataToSend);
     }
 
     /**
-     * @param array $eaqIds
-     * @param array $orderIds
-     * @param array $entityTypeIds
-     * @param array $actionStatus
-     * @param array $actionType
-     * @param       $noOfRecords
-     * @param       $pageNo
-     *
-     * @return array
-     */
-    private function formatData(
-        array $eaqIds,
-        array $orderIds,
-        array $entityTypeIds,
-        array $actionStatus,
-        array $actionType,
-        $noOfRecords,
-        $pageNo
-    ) {
-        $dataToSend = [
-            'no-of-records' => $noOfRecords,
-            'page-no'       => $pageNo,
-        ];
-
-        if ( ! empty($eaqIds)) {
-            $dataToSend['eaq-id'] = $eaqIds;
-        }
-
-        if ( ! empty($orderIds)) {
-            $dataToSend['order-id'] = $orderIds;
-        }
-
-        if ( ! empty($entityTypeIds)) {
-            $dataToSend['entity-type-id'] = $entityTypeIds;
-        }
-
-        if ( ! empty($actionStatus)) {
-            $dataToSend['action-status'] = $actionStatus;
-        }
-
-        if ( ! empty($actionType)) {
-            $dataToSend['action-type'] = $actionType;
-        }
-
-        return $dataToSend;
-    }
-
-    /**
-     * @param array|null $eaqIds        Array of Integers
-     * @param array|null $orderIds      Array of Integers
-     * @param array|null $entityTypeIds Array of Integers
-     * @param array|null $actionStatus  Array of Strings
-     * @param array|null $actionType    Array of Strings
-     * @param int        $noOfRecords
-     * @param int        $pageNo
+     * @param array $eaqIds        Array of Integers
+     * @param array $orderIds      Array of Integers
+     * @param array $entityTypeIds Array of Integers
+     * @param array $actionStatus  Array of Strings
+     * @param array $actionType    Array of Strings
+     * @param int   $noOfRecords
+     * @param int   $pageNo
      *
      * @return Exception|array
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/909
      */
     public function archived(
         array $eaqIds = [],
@@ -120,14 +78,16 @@ class Actions
         $noOfRecords = 10,
         $pageNo = 1
     ) {
-        $dataToSend = $this->formatData(
-            $eaqIds,
-            $orderIds,
-            $entityTypeIds,
-            $actionStatus,
-            $actionType,
-            $noOfRecords,
-            $pageNo
+        $dataToSend = $this->fillParameters(
+            [
+                'no-of-records'  => $noOfRecords,
+                'page-no'        => $pageNo,
+                'eaq-id'         => $eaqIds,
+                'order-id'       => $orderIds,
+                'entity-type-id' => $entityTypeIds,
+                'action-status'  => $actionStatus,
+                'action-type'    => $actionType,
+            ]
         );
 
         return $this->get('search-archived', $dataToSend);
