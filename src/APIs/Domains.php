@@ -296,7 +296,7 @@ class Domains
                 'order-id'  => $orderId,
                 'auth-code' => $code,
             ],
-            'transfers/'
+            'transfer/'
         );
     }
 
