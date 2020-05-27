@@ -605,18 +605,22 @@ class Domains
         $regContactId,
         $adminContactId,
         $techContactId,
-        $billingContactId
+        $billingContactId,
+        $skipIRTP = false
     ) {
-        return $this->post(
-            'modify-contact',
-            [
-                'order-id'           => $orderId,
-                'reg-contact-id'     => $regContactId,
-                'admin-contact-id'   => $adminContactId,
-                'tech-contact-id'    => $techContactId,
-                'billing-contact-id' => $billingContactId,
-            ]
-        );
+        $params = [
+            'order-id'           => $orderId,
+            'reg-contact-id'     => $regContactId,
+            'admin-contact-id'   => $adminContactId,
+            'tech-contact-id'    => $techContactId,
+            'billing-contact-id' => $billingContactId,
+        ];
+
+        if ($skipIRTP) {
+            $params = array_merge($params, $this->processAttributes(['skipIRTP' => 'true']));
+        }
+
+        return $this->post('modify-contact', $params);
     }
 
     /**
