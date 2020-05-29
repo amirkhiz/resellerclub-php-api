@@ -880,7 +880,7 @@ class Domains
     {
         $attributes = $this->processAttributes($attributes);
 
-        return $this->post('add-dnssec', ['orderId' => $orderId] + $attributes);
+        return $this->post('add-dnssec', ['order-id' => $orderId] + $attributes);
     }
 
     /**
@@ -895,7 +895,7 @@ class Domains
     {
         $attributes = $this->processAttributes($attributes);
 
-        return $this->post('del-dnssec', ['orderId' => $orderId] + $attributes);
+        return $this->post('del-dnssec', ['order-id' => $orderId] + $attributes);
     }
 
     /**
