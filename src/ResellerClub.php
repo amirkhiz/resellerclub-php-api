@@ -43,11 +43,13 @@ class ResellerClub
     /**
      * ResellerClub constructor.
      *
-     * @param        $userId
-     * @param        $apiKey
+     * @param int    $userId
+     * @param string $apiKey
      * @param bool   $testMode
      * @param int    $timeout
      * @param string $bindIp
+     *
+     * @return void
      */
     public function __construct(
         $userId,
@@ -61,26 +63,20 @@ class ResellerClub
             'api-key'     => $apiKey,
         ];
 
-        $this->guzzle = new Guzzle(
-            [
-                'base_uri'        => $testMode ? self::API_TEST_URL
-                    : self::API_URL,
-                'defaults'        => [
-                    'query' => $this->authentication,
-                ],
-                'verify'          => false,
-                'connect_timeout' => (float)$timeout,
-                'timeout'         => (float)$timeout,
-                'curl'            => [
-                    CURLOPT_INTERFACE => null !== $bindIp ? $bindIp : '0',
-                ],
-                'stream_context'  => [
-                    'socket' => [
-                        'bindto' => null !== $bindIp ? $bindIp : '0',
-                    ],
-                ],
-            ]
-        );
+        $guzzleConfig = [
+            'base_uri'        => $testMode ? self::API_TEST_URL : self::API_URL,
+            'defaults'        => ['query' => $this->authentication],
+            'verify'          => false,
+            'connect_timeout' => (float)$timeout,
+            'timeout'         => (float)$timeout,
+        ];
+
+        if (!empty($bindIp)) {
+            $guzzleConfig['curl'] = [CURLOPT_INTERFACE => $bindIp];
+            $guzzleConfig['stream_context'] = ['socket' => ['bindto' => $bindIp]];
+        }
+
+        $this->guzzle = new Guzzle($guzzleConfig);
     }
 
     /**
