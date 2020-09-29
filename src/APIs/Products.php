@@ -4,13 +4,11 @@ namespace habil\ResellerClub\APIs;
 
 use Exception;
 use habil\ResellerClub\Helper;
-use SimpleXMLElement;
 
 /**
  * Class Products
  *
  * @package habil\ResellerClub\APIs
- * @todo    Add other endpoints
  */
 class Products
 {
@@ -29,5 +27,28 @@ class Products
     public function customerPrice()
     {
         return $this->get('customer-price');
+    }
+
+    /**
+     * @param string $domainName
+     * @param int $existingCustomerId
+     * @param int $newCustomerId
+     * @param string $defaultContact
+     *
+     * @return array|Exception
+     * @throws Exception
+     * @link https://manage.logicboxes.com/kb/node/904
+     */
+    public function move($domainName, $existingCustomerId, $newCustomerId, $defaultContact = 'oldcontact')
+    {
+        return $this->post(
+            'move',
+            [
+                'domain-name'          => $domainName,
+                'existing-customer-id' => $existingCustomerId,
+                'new-customer-id'      => $newCustomerId,
+                'default-contact'      => $defaultContact,
+            ]
+        );
     }
 }
