@@ -4,7 +4,6 @@ namespace habil\ResellerClub\APIs;
 
 use Exception;
 use habil\ResellerClub\Helper;
-use SimpleXMLElement;
 
 /**
  * Class Domains
@@ -156,22 +155,23 @@ class Domains
     }
 
     /**
+     * @see https://manage.logicboxes.com/kb/node/1085
+     *
      * @param string $keyword
-     * @param string $tld
+     * @param array  $tld
      * @param bool   $exactMatch
      *
      * @return array|Exception
      * @throws Exception
-     * @link     https://manage.logicboxes.com/kb/node/1085
      */
-    public function suggestNames($keyword, $tld = '', $exactMatch = false)
+    public function suggestNames($keyword, $tld = [], $exactMatch = false)
     {
         return $this->get(
             'suggest-names',
             [
                 'keyword'     => $keyword,
-                'tld'         => $tld,
-                'exact-match' => $exactMatch,
+                'tld-only'    => $tld,
+                'exact-match' => $exactMatch ? 'true' : 'false',
             ],
             'v5/'
         );
