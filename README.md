@@ -1,6 +1,7 @@
 # Description
 This client is used to interact with one of the following APIs:
  * ResellerClub ([Docs](https://resellerclub.webpropanel.com/kb/answer/751))
+ * BadilHost ([Docs](https://my.badilhost.com//kb/answer/751))
  * LogicBoxes ([Docs](https://manage.logicboxes.com/kb/node/751))
  * Whois ([Docs](https://manage.whois.com/kb/node/751))
  * NetForce ([Docs](https://location-independent.myorderbox.com/kb/node/751))
